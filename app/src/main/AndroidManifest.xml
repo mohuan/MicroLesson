@@ -39,6 +39,9 @@
             android:exported="false"
             android:name="com.skyworth.rxqwelibrary.service.InitializeService" />
 
+        <activity
+            android:name=".ui.main.activity.MainActivity"
+            android:screenOrientation="landscape"/>
 
     </application>
 

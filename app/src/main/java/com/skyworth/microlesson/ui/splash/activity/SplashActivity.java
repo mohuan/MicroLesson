@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.base.RootActivity;
+import com.skyworth.microlesson.ui.main.activity.MainActivity;
 import com.skyworth.microlesson.ui.splash.contract.SplashContract;
 import com.skyworth.microlesson.ui.splash.presenter.SplashPresenter;
 
@@ -23,8 +24,9 @@ import cn.bingoogolapple.bgabanner.BGALocalImageSize;
  */
 
 /**
- * 1.api文档地址 http://exam-dev.skyworthedu.com:9009/api/doc/index.html
- * 2.账号 136 6666 6666      000000
+ * 1.抽屉
+ * 2.画图
+ * 3.录屏
  *
  *
  */
@@ -141,7 +143,7 @@ public class SplashActivity extends RootActivity<SplashPresenter> implements Spl
 
     private void initApp(Animation animation){
 
-//        startActivity(MainActivity.newInstance(getApplicationContext()));
+        startActivity(MainActivity.newInstance(getApplicationContext()));
 //        startActivity(LoginActivity.newInstance(getApplicationContext()));
 
 //        if(mPresenter.isLogin())
@@ -151,7 +153,7 @@ public class SplashActivity extends RootActivity<SplashPresenter> implements Spl
 //        else{
 //            startActivity(LoginActivity.newInstance(getApplicationContext()));
 //        }
-//        finish();
+        finish();
     }
 
     @Override
