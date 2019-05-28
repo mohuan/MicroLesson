@@ -60,6 +60,13 @@ ext{
             "matisse"                           : "com.zhihu.android:matisse:0.5.2-beta4",
             //日历 https://github.com/yannecer/NCalendar
             "ncalendar"                         : "com.necer.ncalendar:ncalendar:3.4.5",
+            // popupwindow 待验证
+            // https://github.com/kakajika/RelativePopupWindow
+            "relativepopupwindow"               : "com.labo.kaji:relativepopupwindow:0.3.1",
+            // https://github.com/razerdp/BasePopup
+            "BasePopup"                         : "com.github.razerdp:BasePopup:2.2.0",
+            // https://github.com/zyyoona7/EasyPopup 已经不维护
+            "EasyPopup"                         : "com.github.zyyoona7:EasyPopup:1.1.2",
 
 
             //net

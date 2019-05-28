@@ -24,7 +24,7 @@ import cn.bingoogolapple.bgabanner.BGALocalImageSize;
  */
 
 /**
- * 1.抽屉
+ * 1.抽屉   finish
  * 2.画图
  * 3.录屏
  *
