@@ -63,7 +63,7 @@ ext{
             // popupwindow 待验证
             // https://github.com/kakajika/RelativePopupWindow
             "relativepopupwindow"               : "com.labo.kaji:relativepopupwindow:0.3.1",
-            // https://github.com/razerdp/BasePopup
+            // https://github.com/razerdp/BasePopup  尝试这个
             "BasePopup"                         : "com.github.razerdp:BasePopup:2.2.0",
             // https://github.com/zyyoona7/EasyPopup 已经不维护
             "EasyPopup"                         : "com.github.zyyoona7:EasyPopup:1.1.2",

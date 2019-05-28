@@ -50,19 +50,19 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    @OnClick({R.id.start_button,R.id.close_button})
+    @OnClick({R.id.more_img})
     void onViewClicked(View view){
         switch (view.getId()) {
-            case R.id.start_button:
+            case R.id.more_img:
                 if (!drawer_layout.isDrawerOpen(GravityCompat.START)) {
                     drawer_layout.openDrawer(GravityCompat.START);
                 }
                 break;
-            case R.id.close_button:
-                if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                    drawer_layout.closeDrawer(GravityCompat.START);
-                }
-                break;
+//            case R.id.close_button:
+//                if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+//                    drawer_layout.closeDrawer(GravityCompat.START);
+//                }
+//                break;
         }
     }
 }
