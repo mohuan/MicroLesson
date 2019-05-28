@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.skyworth.microlesson.di.module.FragmentModule;
 import com.skyworth.microlesson.di.scope.FragmentScope;
+import com.skyworth.microlesson.ui.main.fragment.DoodleFragment;
 
 import dagger.Component;
 
@@ -18,7 +19,7 @@ public interface FragmentComponent {
 
     Activity getActivity();
 
-//    void inject(MineFragment mineFragment);
+    void inject(DoodleFragment doodleFragment);
 
 //    void inject(HomeFragment homeFragment);
 

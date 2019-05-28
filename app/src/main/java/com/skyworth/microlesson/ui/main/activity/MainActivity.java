@@ -12,15 +12,21 @@ import android.view.WindowManager;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.base.BaseFragmentActivity;
 import com.skyworth.microlesson.ui.main.contract.MainContract;
+import com.skyworth.microlesson.ui.main.fragment.DoodleFragment;
 import com.skyworth.microlesson.ui.main.presenter.MainPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainActivity extends BaseFragmentActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
+
+    public static final int FIRST = 0;
+
+    private SupportFragment[] mFragments = new SupportFragment[3];
 
     /**
      * 打开新Activity
@@ -48,6 +54,13 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
         //设置全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        SupportFragment firstFragment = findFragment(DoodleFragment.class);
+        if (firstFragment == null) {
+            mFragments[FIRST] = DoodleFragment.newInstance();
+            loadMultipleRootFragment(R.id.fragment_content, FIRST,
+                    mFragments[FIRST]);
+        }
     }
 
     @OnClick({R.id.more_img})

@@ -67,6 +67,8 @@ ext{
             "BasePopup"                         : "com.github.razerdp:BasePopup:2.2.0",
             // https://github.com/zyyoona7/EasyPopup 已经不维护
             "EasyPopup"                         : "com.github.zyyoona7:EasyPopup:1.1.2",
+            //画板
+            "Doodle"                            : "com.github.1993hzw:Doodle:5.5.1",
 
 
             //net
