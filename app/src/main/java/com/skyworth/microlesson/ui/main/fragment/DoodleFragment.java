@@ -76,6 +76,9 @@ public class DoodleFragment extends RootFragment<DoodlePresenter> implements Doo
 
     @Override
     protected void initEventAndData() {
+
+//        extraTransaction().setTag("111");
+
         // 涂鸦参数
         params = new DoodleParams();
         params.mIsFullScreen = true;

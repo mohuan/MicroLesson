@@ -229,4 +229,11 @@ public class SupportAutoActivity extends AppCompatActivity implements ISupportAc
         return SupportHelper.findFragment(getSupportFragmentManager(), fragmentClass);
     }
 
+    /**
+     * 获取栈内的fragment对象 根据fragmentTag
+     */
+    public <T extends ISupportFragment> T findFragment(String fragmentTag) {
+        return SupportHelper.findFragment(getSupportFragmentManager(), fragmentTag);
+    }
+
 }
