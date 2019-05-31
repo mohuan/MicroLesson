@@ -18,14 +18,15 @@ public class AppConfig {
 
     private String[] mAppFolders = {
 
-            AppConstants.CACHE_PATH,
+//            AppConstants.CACHE_PATH,
             AppConstants.PARENT_FOLD_PATH,
 
-            AppConstants.DOWNLOAD_PATH,
-            AppConstants.LOGS_PATH,
+//            AppConstants.DOWNLOAD_PATH,
+//            AppConstants.LOGS_PATH,
 
-            AppConstants.RECORD_DOWNLOAD_PATH,
-            AppConstants.FILE_DOWNLOAD_PATH
+//            AppConstants.RECORD_DOWNLOAD_PATH,
+            AppConstants.FILE_DOWNLOAD_PATH,
+            AppConstants.FILE_VIDEO_PATH
     };
 
     private AppConfig(){

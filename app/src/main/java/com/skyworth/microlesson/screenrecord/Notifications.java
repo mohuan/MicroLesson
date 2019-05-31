@@ -39,7 +39,7 @@ import static android.os.Build.VERSION_CODES.O;
  * @author yrom
  * @version 2017/12/1
  */
-class Notifications extends ContextWrapper {
+public class Notifications extends ContextWrapper {
     private static final int id = 0x1fff;
     private static final String CHANNEL_ID = "Recording";
     private static final String CHANNEL_NAME = "Screen Recorder Notifications";
@@ -49,7 +49,7 @@ class Notifications extends ContextWrapper {
     private Notification.Action mStopAction;
     private Notification.Builder mBuilder;
 
-    Notifications(Context context) {
+    public Notifications(Context context) {
         super(context);
         if (Build.VERSION.SDK_INT >= O) {
             createNotificationChannel();
@@ -104,7 +104,7 @@ class Notifications extends ContextWrapper {
         return mStopAction;
     }
 
-    void clear() {
+    public void clear() {
         mLastFiredTime = 0;
         mBuilder = null;
         mStopAction = null;
