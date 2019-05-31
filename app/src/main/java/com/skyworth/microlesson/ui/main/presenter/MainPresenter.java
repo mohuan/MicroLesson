@@ -29,4 +29,6 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
     private void registerEvent() {
 
     }
+
+
 }

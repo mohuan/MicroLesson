@@ -25,4 +25,9 @@ public class Constants {
      * data format
      */
     public static final String SYK_DATA_FORMAT = "application/json";
+
+    /**
+     * record action
+     */
+    public static final String ACTION_STOP = "com.skyworth.microlesson.action.STOP";
 }

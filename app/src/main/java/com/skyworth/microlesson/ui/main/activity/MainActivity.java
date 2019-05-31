@@ -2,25 +2,32 @@ package com.skyworth.microlesson.ui.main.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.base.BaseFragmentActivity;
 import com.skyworth.microlesson.ui.main.contract.MainContract;
 import com.skyworth.microlesson.ui.main.fragment.DoodleFragment;
 import com.skyworth.microlesson.ui.main.presenter.MainPresenter;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.SupportHelper;
+
+import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends BaseFragmentActivity<MainPresenter> implements MainContract.View {
 
@@ -38,6 +45,9 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
     private int current_page = 1;
     private int sum_page = 1;
+
+    @BindView(R.id.record_but)
+    ImageView record_but;
 
     /**
      * 打开新Activity
@@ -69,6 +79,8 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
         SupportFragment fragment = DoodleFragment.newInstance();
         extraTransaction().setTag(FragmentName+current_page)
                 .loadRootFragment(R.id.fragment_content, fragment);
+
+        initButtonClick();
 
     }
 
@@ -125,6 +137,21 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
     private void setPageLabel(){
         page_tv.setText(current_page + " / "+ sum_page);
-
     }
+
+    ////////////////////////////////////////////录屏 start ////////////////////////////////////////////////////
+    /**
+     * 按钮点击
+     */
+    private void initButtonClick(){
+        //录播
+        mPresenter.addRxBindingSubscribe(
+                RxView.clicks(record_but)
+                        .throttleFirst(2, TimeUnit.SECONDS)
+                        .subscribe(o -> {
+
+                        })
+        );
+    }
+    ////////////////////////////////////////////录屏 end ////////////////////////////////////////////////////
 }

@@ -134,6 +134,7 @@
                 android:src="@mipmap/ic_launcher"
                 />
             <ImageView
+                android:id="@+id/record_but"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
