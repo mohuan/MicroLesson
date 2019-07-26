@@ -22,14 +22,14 @@ public class AppConstants {
      * logs 文件
      * @param string
      */
-//    public static String LOGS_PATH = "";
+    public static String LOGS_PATH = "";
 
     public static void initPath(String string){
         PARENT_FOLD_PATH = string+ File.separator;
 //        CACHE_PATH = PARENT_FOLD_PATH;
 
 //        DOWNLOAD_PATH = PARENT_FOLD_PATH + "download" + File.separator;
-//        LOGS_PATH = PARENT_FOLD_PATH + "logs" + File.separator;
+        LOGS_PATH = PARENT_FOLD_PATH + "logs" + File.separator;
 
         //download
 //        RECORD_DOWNLOAD_PATH = DOWNLOAD_PATH + "audio" + File.separator;
