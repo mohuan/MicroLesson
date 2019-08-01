@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.blankj.utilcode.util.ScreenUtils;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.base.RootFragment;
 import com.skyworth.microlesson.ui.main.contract.DoodleContract;
@@ -92,7 +93,8 @@ public class DoodleFragment extends RootFragment<DoodlePresenter> implements Doo
         params.mSupportScaleItem = true;
 
 //        Bitmap bitmap = ImageUtils.createBitmapFromPath(mImagePath, getContext());
-        Bitmap bitmap = Bitmap.createBitmap(doodle_container.getWidth(),doodle_container.getHeight(),Bitmap.Config.RGB_565);
+        //这里的宽高有些问题  以后需要调整
+        Bitmap bitmap = Bitmap.createBitmap(ScreenUtils.getAppScreenWidth(),ScreenUtils.getAppScreenHeight(),Bitmap.Config.RGB_565);
 
         DoodleView doodleView = new DoodleView(getContext(), bitmap, true, new IDoodleListener() {
             /*
@@ -157,6 +159,12 @@ public class DoodleFragment extends RootFragment<DoodlePresenter> implements Doo
         doodle_container.addView(doodleView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 //        mDoodle.setDoodleMinScale(mDoodleParams.mMinScale);
 //        mDoodle.setDoodleMaxScale(mDoodleParams.mMaxScale);
+
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
 
     }
 

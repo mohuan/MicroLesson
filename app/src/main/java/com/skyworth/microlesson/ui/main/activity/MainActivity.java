@@ -1,7 +1,6 @@
 package com.skyworth.microlesson.ui.main.activity;
 
 import android.Manifest;
-import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,12 +10,9 @@ import android.content.pm.PackageManager;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.StrictMode;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,9 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.jakewharton.rxbinding2.view.RxView;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.api.Constants;
 import com.skyworth.microlesson.base.BaseFragmentActivity;
@@ -39,27 +33,20 @@ import com.skyworth.microlesson.ui.main.contract.MainContract;
 import com.skyworth.microlesson.ui.main.fragment.DoodleFragment;
 import com.skyworth.microlesson.ui.main.presenter.MainPresenter;
 import com.skyworth.rxqwelibrary.app.AppConstants;
-import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
-import me.yokeyword.fragmentation.SupportHelper;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.os.Build.VERSION_CODES.M;
-
-import static com.skyworth.microlesson.screenrecord.ScreenRecorder.AUDIO_AAC;
 import static com.skyworth.microlesson.screenrecord.ScreenRecorder.VIDEO_AVC;
 
 
@@ -76,8 +63,7 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
     private int current_page = 1;
     private int sum_page = 1;
 
-    @BindView(R.id.record_but)
-    ImageView record_but;
+    private int recordPermissions = 0;
 
     /**
      * 打开新Activity
@@ -110,11 +96,10 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
         extraTransaction().setTag(FragmentName+current_page)
                 .loadRootFragment(R.id.fragment_content, fragment);
 
-        initButtonClick();
-
+        initScreenRecord();
     }
 
-    @OnClick({R.id.more_img,R.id.next_page,R.id.front_page})
+    @OnClick({R.id.more_img,R.id.next_page,R.id.front_page,R.id.record_img})
     void onViewClicked(View view){
         final ISupportFragment topFragment = getTopFragment();
         SupportFragment supportFragment = (SupportFragment) topFragment;
@@ -162,6 +147,41 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
                 setPageLabel();
                 break;
+            //录播
+            case R.id.record_img:
+                //如果有权限
+                if(hasPermissions()){
+                    if (mRecorder != null) {
+                        ToastUtils.showShort("录制完成");
+                        stopRecorder();
+                    }else {
+                        startCaptureIntent();
+                    }
+                }else {
+                    recordPermissions = 0;
+                    mPresenter.addRxBindingSubscribe(
+                            new RxPermissions(this)
+                                    .requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                            Manifest.permission.RECORD_AUDIO)
+                                    .subscribe(permission -> { // will emit 2 Permission objects
+                                                if (permission.granted) {
+                                                    if(++recordPermissions == 2){
+                                                        if (mRecorder != null) {
+                                                            stopRecorder();
+                                                        }else {
+                                                            startCaptureIntent();
+                                                        }
+                                                    }
+                                                } else if (permission.shouldShowRequestPermissionRationale) {
+                                                    ToastUtils.showLong("请开启相关权限");
+                                                } else {
+                                                    ToastUtils.showLong("请开启相关权限");
+                                                }
+                                            }
+                                    )
+                    );
+                }
+                break;
         }
     }
 
@@ -184,53 +204,12 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
     //初始化录屏 参数
     private void initScreenRecord(){
+        //1.获取用户录制屏幕授权
         mMediaProjectionManager = (MediaProjectionManager) getApplicationContext().getSystemService(MEDIA_PROJECTION_SERVICE);
         mNotifications = new Notifications(getApplicationContext());
         screenSetting = new ScreenSetting(getApplicationContext());
     }
 
-    /**
-     * 按钮点击
-     */
-    private void initButtonClick(){
-        //录播
-        mPresenter.addRxBindingSubscribe(
-                RxView.clicks(record_but)
-                    .throttleFirst(2, TimeUnit.SECONDS)
-                    .compose(
-                            new RxPermissions(this)
-                                    .ensureEach(
-                                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                            Manifest.permission.RECORD_AUDIO
-                                    )
-                    )
-                    .subscribe(
-                            permission -> {
-                                // will emit 2 Permission objects
-                                if (permission.granted) {
-                                    // `permission.name` is granted !
-                                    // 用户已经同意该权限
-                                    //如果正在录制，则停止
-                                    if (mRecorder != null) {
-                                        stopRecorder();
-                                    }else {
-                                        startCaptureIntent();
-                                    }
-                                } else if (permission.shouldShowRequestPermissionRationale) {
-                                    // Denied permission without ask never again
-                                    // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时。还会提示请求权限的对话框
-                                    ToastUtils.showLong("请开启相关权限");
-                                } else {
-                                    // Denied permission with ask never again
-                                    // Need to go to the settings
-                                    // 用户拒绝了该权限，而且选中『不再询问』
-                                    ToastUtils.showLong("请开启相关权限");
-                                }
-                            }
-                    )
-        );
-
-    }
 
     private void startCaptureIntent() {
         Intent captureIntent = mMediaProjectionManager.createScreenCaptureIntent();
@@ -240,6 +219,7 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //2.在 onActivityResult 对用户的授权做处理
         if (requestCode == REQUEST_MEDIA_PROJECTION) {
             // NOTE: Should pass this result data into a Service to run ScreenRecorder.
             // The following codes are merely exemplary.
@@ -276,6 +256,7 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
         }
     }
 
+    //3初始化 MediaRecorder、创建 VirtualDisplay
     private ScreenRecorder newRecorder(MediaProjection mediaProjection, VideoEncodeConfig video,
                                        AudioEncodeConfig audio, File output) {
         ScreenRecorder r = new ScreenRecorder(video, audio,
@@ -330,7 +311,11 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
     }
 
     private void stopRecorder() {
-        mNotifications.clear();
+
+        if(mNotifications != null){
+            mNotifications.clear();
+        }
+
         if (mRecorder != null) {
             mRecorder.quit();
         }

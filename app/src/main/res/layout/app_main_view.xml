@@ -8,25 +8,32 @@
 
     <!--左侧-->
     <LinearLayout
-        android:layout_width="50dp"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
-        android:background="#999999"
+        android:background="#E4E2E2"
         >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:padding="6dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/brush_mark_pen"
             />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@mipmap/ic_launcher"
+            android:padding="6dp"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/main_cursor_point_large"
             android:padding="6dp"
             />
         <ImageView
@@ -47,28 +54,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/main_scroll"
             android:padding="6dp"
             />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/main_camera"
             android:padding="6dp"
             />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
-            android:padding="6dp"
-            />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/main_more"
             android:padding="6dp"
             />
         <ImageView
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/main_menu"
             android:padding="6dp"
             />
     </LinearLayout>
@@ -92,11 +92,11 @@
         <!--顶部导航-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:orientation="horizontal"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
-            android:background="#666666"
+            android:background="#E4E2E2"
             >
             <ImageView
                 android:layout_width="40dp"
@@ -125,45 +125,45 @@
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/screenshare_on"
                 />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/zoomout_style_3"
                 />
             <ImageView
-                android:id="@+id/record_but"
+                android:id="@+id/record_img"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
-                />
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/record"
                 />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/main_reset"
                 />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/main_undo"
+                />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/main_redo"
                 />
             <ImageView
                 android:id="@+id/front_page"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/main_page_pre"
                 />
 
             <TextView
@@ -181,7 +181,7 @@
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/main_page_next"
                 />
 
         </LinearLayout>

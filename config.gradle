@@ -119,7 +119,7 @@ ext{
             "walle"                             : "com.meituan.android.walle:library:1.1.6",
             "logger"                            : "com.orhanobut:logger:2.1.1",
             //https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-            "utilcodex"                         : "com.blankj:utilcode:1.23.7",   // if u use AndroidX, use the following   blankj:utilcodex
+            "utilcodex"                         : "com.blankj:utilcode:1.25.5",   // if u use AndroidX, use the following   blankj:utilcodex
             "autosize"                          : "me.jessyan:autosize:1.1.2",
             //https://github.com/YoKeyword/Fragmentation
             "fragmentation"                     : "me.yokeyword:fragmentation:1.3.6",
