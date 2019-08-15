@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mirror.activity.MirrorActivity"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/browse_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        />
+
+    <Button
+        android:id="@+id/connect_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="连接"
+        />
+
+    <Button
+        android:id="@+id/mirror_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="投屏"
+        />
+
+
+</LinearLayout>

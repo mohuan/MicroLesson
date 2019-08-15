@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.ToastUtils;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.api.Constants;
+import com.skyworth.microlesson.app.AppContext;
 import com.skyworth.microlesson.base.BaseFragmentActivity;
 import com.skyworth.microlesson.screenrecord.AudioEncodeConfig;
 import com.skyworth.microlesson.screenrecord.Notifications;
@@ -32,6 +33,7 @@ import com.skyworth.microlesson.screenrecord.VideoEncodeConfig;
 import com.skyworth.microlesson.ui.main.contract.MainContract;
 import com.skyworth.microlesson.ui.main.fragment.DoodleFragment;
 import com.skyworth.microlesson.ui.main.presenter.MainPresenter;
+import com.skyworth.microlesson.ui.mirror.activity.MirrorActivity;
 import com.skyworth.rxqwelibrary.app.AppConstants;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -99,7 +101,7 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
         initScreenRecord();
     }
 
-    @OnClick({R.id.more_img,R.id.next_page,R.id.front_page,R.id.record_img})
+    @OnClick({R.id.more_img,R.id.next_page,R.id.front_page,R.id.record_img,R.id.mirror_img})
     void onViewClicked(View view){
         final ISupportFragment topFragment = getTopFragment();
         SupportFragment supportFragment = (SupportFragment) topFragment;
@@ -181,6 +183,10 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
                                     )
                     );
                 }
+                break;
+            //投屏
+            case R.id.mirror_img:
+                startActivity(MirrorActivity.newInstance(this));
                 break;
         }
     }

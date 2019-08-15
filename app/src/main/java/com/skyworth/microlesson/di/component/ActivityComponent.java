@@ -6,6 +6,7 @@ import android.app.Activity;
 import com.skyworth.microlesson.di.module.ActivityModule;
 import com.skyworth.microlesson.di.scope.ActivityScope;
 import com.skyworth.microlesson.ui.main.activity.MainActivity;
+import com.skyworth.microlesson.ui.mirror.activity.MirrorActivity;
 import com.skyworth.microlesson.ui.splash.activity.SplashActivity;
 
 import dagger.Component;
@@ -23,5 +24,7 @@ public interface ActivityComponent {
     void inject(SplashActivity splashActivity);
 
     void inject(MainActivity mainActivity);
+
+    void inject(MirrorActivity mirrorActivity);
 
 }

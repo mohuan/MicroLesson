@@ -45,6 +45,11 @@
             android:name=".ui.main.activity.MainActivity"
             android:screenOrientation="landscape"/>
 
+        <!--投屏-->
+        <activity
+            android:name=".ui.mirror.activity.MirrorActivity"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import com.skyworth.microlesson.di.component.AppComponent;
 import com.skyworth.microlesson.di.component.DaggerAppComponent;
 import com.skyworth.microlesson.di.module.AppModule;
 import com.skyworth.microlesson.di.module.HttpModule;
+import com.skyworth.microlesson.lebo.LelinkHelper;
 import com.skyworth.rxqwelibrary.app.BaseApplication;
 import com.skyworth.rxqwelibrary.app.CrashHandler;
 import com.skyworth.rxqwelibrary.service.InitializeService;
@@ -31,6 +32,12 @@ public class AppContext extends BaseApplication {
 
     private String ticket;
 
+    private LelinkHelper mLelinkHelper;
+
+    public LelinkHelper getLelinkHelper() {
+        return mLelinkHelper;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -42,6 +49,9 @@ public class AppContext extends BaseApplication {
         super.onCreate();
 
         instance = this;
+
+        mLelinkHelper = LelinkHelper.getInstance(getApplicationContext());
+
         //在子线程中完成其他初始化
         InitializeService.start(this);
 
