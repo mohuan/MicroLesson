@@ -24,11 +24,12 @@ import cn.bingoogolapple.bgabanner.BGALocalImageSize;
  */
 
 /**
- * 1.抽屉   finish
  * 2.画图   finish
  * 3.录屏-保存到本地的MP4 文件  finish
  * 4.投屏
  * 5.画笔的样式 可以采取工厂类 统一处理
+ * 6.录像
+ * 7.文件管理器
  *
  */
 

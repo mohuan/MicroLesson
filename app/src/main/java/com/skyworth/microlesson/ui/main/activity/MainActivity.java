@@ -11,6 +11,7 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -186,7 +187,28 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
                 break;
             //投屏
             case R.id.mirror_img:
-                startActivity(MirrorActivity.newInstance(this));
+//                获取系统文件管理器  https://blog.csdn.net/bzlj2912009596/article/details/80994628
+                // https://blog.csdn.net/APTX8899/article/details/88649385
+                // https://www.cnblogs.com/blosaa/p/9430996.html
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("*/*");//设置类型，我这里是任意类型，任意后缀的可以这样写。
+//                intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                startActivityForResult(intent,1);
+
+                //调用系统摄像头录制
+                // https://www.jianshu.com/p/3f4ad878f6c8
+                // MediaStore.EXTRA_OUTPUT：设置媒体文件的保存路径。
+                //MediaStore.EXTRA_VIDEO_QUALITY：设置视频录制的质量，0为低质量，1为高质量。
+                //MediaStore.EXTRA_DURATION_LIMIT：设置视频最大允许录制的时长，单位为毫秒。
+                //MediaStore.EXTRA_SIZE_LIMIT：指定视频最大允许的尺寸，单位为byte。
+                Intent intent=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
+                //好使
+                intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,10485760L);
+                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,10);
+                startActivityForResult(intent,1);
+
+//                startActivity(MirrorActivity.newInstance(this));
                 break;
         }
     }
