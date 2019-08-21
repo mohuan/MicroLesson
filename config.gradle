@@ -26,6 +26,8 @@ ext{
             // https://blog.csdn.net/fxjzzyo/article/details/84989285
             // https://blog.csdn.net/u010499721/article/details/50338623  需要关注截取图片大小 是存储本地 还是 内存。图片很大需要压缩。
 
+
+
             //https://github.com/JsonChao/Awesome-WanAndroid/blob/master/config.gradle
             //base
             "appcompat-v7"                      : "com.android.support:appcompat-v7:${version["supportLibraryVersion"]}",

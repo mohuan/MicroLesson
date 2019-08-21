@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
@@ -22,6 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.jmolsmobile.landscapevideocapture.VideoCaptureActivity;
+import com.jmolsmobile.landscapevideocapture.configuration.CaptureConfiguration;
+import com.jmolsmobile.landscapevideocapture.configuration.PredefinedCaptureConfigurations;
 import com.skyworth.microlesson.R;
 import com.skyworth.microlesson.api.Constants;
 import com.skyworth.microlesson.app.AppContext;
@@ -51,7 +55,9 @@ import me.yokeyword.fragmentation.SupportFragment;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.skyworth.microlesson.screenrecord.ScreenRecorder.VIDEO_AVC;
-
+import com.jmolsmobile.landscapevideocapture.configuration.CaptureConfiguration;
+import com.jmolsmobile.landscapevideocapture.configuration.PredefinedCaptureConfigurations.CaptureQuality;
+import com.jmolsmobile.landscapevideocapture.configuration.PredefinedCaptureConfigurations.CaptureResolution;
 
 public class MainActivity extends BaseFragmentActivity<MainPresenter> implements MainContract.View {
 
@@ -201,12 +207,44 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
                 //MediaStore.EXTRA_VIDEO_QUALITY：设置视频录制的质量，0为低质量，1为高质量。
                 //MediaStore.EXTRA_DURATION_LIMIT：设置视频最大允许录制的时长，单位为毫秒。
                 //MediaStore.EXTRA_SIZE_LIMIT：指定视频最大允许的尺寸，单位为byte。
-                Intent intent=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
-                //好使
-                intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,10485760L);
-                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,10);
-                startActivityForResult(intent,1);
+//                Intent intent=new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+//                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
+//                //好使
+//                intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,10485760L);
+//                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,10);
+//                startActivityForResult(intent,1);
+
+//                PredefinedCaptureConfigurations.CaptureResolution captureResolution = new CaptureConfiguration()
+
+                AudioManager audioManager = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
+
+                audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
+                audioManager.setStreamMute(AudioManager.STREAM_MUSIC,true);
+                audioManager.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+                audioManager.setStreamVolume(AudioManager.STREAM_DTMF, 0, 0);
+                audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+                audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
+
+
+
+                //https://github.com/JeroenMols/LandscapeVideoCamera
+                CaptureConfiguration.Builder builder = new CaptureConfiguration.Builder(CaptureResolution.RES_720P, CaptureQuality.MEDIUM);
+//                CaptureConfiguration.Builder builder = new CaptureConfiguration.Builder(int videoWidth, int videoHeight, int bitrate);
+
+                // Optional
+                builder.maxDuration(30);
+//                builder.maxFileSize(maxFileSizeMb);
+//                builder.frameRate(framesPerSec);
+                builder.showRecordingTime();         // Show the elapsed recording time
+                builder.noCameraToggle();            // Remove button to toggle between front and back camera
+
+                // Get the CaptureConfiguration
+                CaptureConfiguration configuration = builder.build();
+
+                final Intent intent = new Intent(getBaseContext(), VideoCaptureActivity.class);
+                intent.putExtra(VideoCaptureActivity.EXTRA_CAPTURE_CONFIGURATION, configuration);
+                intent.putExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME, AppConstants.FILE_VIDEO_PATH+System.currentTimeMillis()+".mp4");
+                startActivityForResult(intent, 1);
 
 //                startActivity(MirrorActivity.newInstance(this));
                 break;

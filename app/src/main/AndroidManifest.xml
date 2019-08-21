@@ -53,6 +53,11 @@
             android:name=".ui.mirror.activity.MirrorActivity"
             android:screenOrientation="landscape"/>
 
+        <activity
+            android:name="com.jmolsmobile.landscapevideocapture.VideoCaptureActivity"
+            android:screenOrientation="sensor" >
+        </activity>
+
     </application>
 
 </manifest>
