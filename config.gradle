@@ -26,6 +26,9 @@ ext{
             // https://blog.csdn.net/fxjzzyo/article/details/84989285
             // https://blog.csdn.net/u010499721/article/details/50338623  需要关注截取图片大小 是存储本地 还是 内存。图片很大需要压缩。
 
+            // 下拉菜单 https://github.com/dongjunkun/DropDownMenu
+            // https://blog.csdn.net/wenzhi20102321/article/details/70045048
+            "DropDownMenu"                      : "com.github.dongjunkun:DropDownMenu:1.0.4",
 
 
             //https://github.com/JsonChao/Awesome-WanAndroid/blob/master/config.gradle

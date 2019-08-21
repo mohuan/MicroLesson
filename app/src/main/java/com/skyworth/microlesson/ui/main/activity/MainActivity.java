@@ -216,14 +216,14 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 
 //                PredefinedCaptureConfigurations.CaptureResolution captureResolution = new CaptureConfiguration()
 
-                AudioManager audioManager = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
-
-                audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC,true);
-                audioManager.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
-                audioManager.setStreamVolume(AudioManager.STREAM_DTMF, 0, 0);
-                audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
-                audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
+//                AudioManager audioManager = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
+//
+//                audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
+//                audioManager.setStreamMute(AudioManager.STREAM_MUSIC,true);
+//                audioManager.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0);
+//                audioManager.setStreamVolume(AudioManager.STREAM_DTMF, 0, 0);
+//                audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0);
+//                audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
 
 
 
@@ -236,7 +236,7 @@ public class MainActivity extends BaseFragmentActivity<MainPresenter> implements
 //                builder.maxFileSize(maxFileSizeMb);
 //                builder.frameRate(framesPerSec);
                 builder.showRecordingTime();         // Show the elapsed recording time
-                builder.noCameraToggle();            // Remove button to toggle between front and back camera
+//                builder.noCameraToggle();            // Remove button to toggle between front and back camera
 
                 // Get the CaptureConfiguration
                 CaptureConfiguration configuration = builder.build();

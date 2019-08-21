@@ -55,7 +55,8 @@
 
         <activity
             android:name="com.jmolsmobile.landscapevideocapture.VideoCaptureActivity"
-            android:screenOrientation="sensor" >
+            android:screenOrientation="landscape"
+             >
         </activity>
 
     </application>
